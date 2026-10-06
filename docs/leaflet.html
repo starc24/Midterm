@@ -16,7 +16,7 @@
         z-index: 800;
         margin: 0;
         padding: 10px 15px;
-        background: rgba(255, 255, 255, .5);
+        background: rgba(26, 214, 139);
         border: 1px solid grey;
         border-radius: 3px;
     }
@@ -26,15 +26,17 @@
 <body>
   <div id="map"></div>
 
-  <!-- TODO: update this title -->
+
   <div id="title">
-     <h1>[TODO: map title]</h1>
-     <p>[TODO: one or two sentences, data source, your name]</p>
+     <h1>New Mexican Counties</h1>
+     <p>This maps shares the population of New Mexican counties.
+      Data source:New Mexico Resource Geographic Information System. 
+      Author: Andrea Chavez</p>
    </div>
   <script>
     
-    //TODO: Update these default zoom settings 
-    const map = L.map('map').setView([32.7701, -108.2803], 11); 
+   
+    const map = L.map('map').setView([32.7701, -108.2803], 6); 
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors'
@@ -42,14 +44,14 @@
 
     // TODO: Update the Default Colors
     const countyLayer = new L.GeoJSON.AJAX('data/popul_byco2018.geojson', {
-        style: {
-         //This loads a default Leaflet blue, update the style here
+        style: { 
+        
         }
         }).addTo(map);
 
     // TODO: Update the correct popup fields
-        countyLayer.on('click', (e) => {
-            const feature = e.layer.feature;
+        countyLayer.on('click', (cowntee_NA) => {
+            const feature = cowntee_NA.layer.feature;
             const popupContent = `
                 <h3>${feature.properties.name}</h3>
                 <p>Population: ${feature.properties.population}</p>
