@@ -14,29 +14,30 @@
 
     <script type="module">
     // Customizations:
-    // 1. 
-    // 2. 
-    // 3.
-
+    // 1. color
+    // 2. angle
+    // 3.popup
         import * as maplibregl from 'https://unpkg.com/maplibre-gl@^6.10.0/dist/maplibre-gl.mjs';
 
-       // TODO: Update the default map settings
+      
         const map = new maplibregl.Map({
             container: 'map',
             style: 'https://tiles.openfreemap.org/styles/positron',
-            center: [0, 0],
-            zoom: 5,
-            pitch: 0,
-            bearing: 0
+            center: [-106.018066, 34.307144],
+            zoom: 6,
+            pitch: 50,
+            bearing: 10
         });
         window.map = map;   // exposes map to the browser console for debugging
 
-       // TODO: Update and add an additional control feature
+       
         map.on('load', function () {
             map.addControl(new maplibregl.NavigationControl(), 'top-left');
+        
+         map.addControl(new maplibregl.ScaleControl(), 'bottom-left');
         });
 
-        // TODO: Update the Default Colors
+       
         map.on('load', () => {
             map.addSource('county_pop', {
                 type: 'geojson',
@@ -45,19 +46,19 @@
 
             map.addLayer({
                 id: 'county_pop', type: 'fill', source: 'county_pop',
-                paint: { }
+                paint: { 'fill-color': '#1AD68B', 'fill-opacity': 0.4 }
             });
 
             map.addLayer({
-                id: 'county_lines', type: 'line', source: 'county_pop',
-                paint: { }
+                id: 'county_lines', type: 'line', source: 'cowntee_NA',
+                paint: {'line-color': '#1A65D6', 'line-width': 3}
             });
 
         // TODO: Update the correct popup fields
-        map.on('click', 'county_pop', function (e) {
+        map.on('click', 'cowntee_NA', function (e) {
                 new maplibregl.Popup()
                     .setLngLat(e.lngLat)
-                    .setHTML(`Name: ${e.features[0].properties.name}<br>
+                    .setHTML(`Name: cowntee_NA ${e.features[0].properties.name}<br>
                     Population: ${e.features[0].properties.population}`)
                     .addTo(map);
             });
